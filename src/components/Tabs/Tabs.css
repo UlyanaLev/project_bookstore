@@ -1,0 +1,20 @@
+.tabs-list_item {
+    background-color: white;
+    border: none;
+    font-family: Roboto;
+    color: #A8A8A8;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 24px 40px;
+    margin-right: 40px;
+    cursor: pointer;
+    transition: 0.45s;
+}
+.tabs-list_item:hover {
+    cursor: pointer;
+    color: #313037;
+}
+.tabs-list_item.active {
+    color: #313037;
+    border-bottom: 2px solid #313037;
+}

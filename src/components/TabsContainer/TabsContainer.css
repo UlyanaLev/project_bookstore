@@ -1,0 +1,27 @@
+.tabs-light {
+    background-color: white;
+}
+.tabs-dark {
+    background-color: #313037;
+}
+.tabs-light .container {
+    padding: 0 20px 64px 20px;
+    
+}
+.tabs-dark .container {
+    padding: 0 20px 64px 20px;
+}
+.tabs-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    border-bottom: 1px solid rgba(218, 218, 218, 1);
+    margin-bottom: 48px;
+}
+.tabs-list-dark {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    border-bottom: 1px solid rgba(218, 218, 218, 1);
+    
+}
