@@ -1,0 +1,30 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header_all {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 104px;
+    border-bottom: 1px solid #E7E7E7;
+}
+.logo {
+    color: #313037;
+    font-size: 42px;
+    font-weight: 700;
+    font-family: "Bebas Neue";
+    text-transform: uppercase;
+}
+.header_rigth {
+    width: 184px;
+    display: flex;
+    justify-content: space-between;
+}
+.header_icon {
+    width: 56px;
+    font-size: 24px;
+    color: #313037;
+    cursor: pointer;
+}
