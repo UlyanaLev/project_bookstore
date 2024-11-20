@@ -1,0 +1,157 @@
+.selected_posts_wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+.selected_posts_top {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 1080px;
+}
+.faArrowLeftLong {
+    padding: 50px 0 0 0;
+    font-size: 18px;
+    color: #313037;
+}
+.selected_posts_left {
+    position: relative;
+    display: block;
+    width: 544px;
+    height: 472px;
+}
+.selected_posts_photo {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    width: 544px;
+    height: 472px;
+}
+.selected_posts_image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+.selected_posts_heart {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.selected_posts_right {
+    display: flex;
+    flex-direction: column;
+    width: 448px;
+}
+.selected_posts_discription {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 60px;
+}
+.selected_posts_discription_price {
+    line-height: 60px;
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+    font-family: "Bebas Neue";
+    font-weight: 700;
+    color: #313037;
+
+}
+.selected_posts_discription_right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.selected_posts_discription_rating,
+.selected_posts_discription_publisher,
+.selected_posts_discription_language,
+.selected_posts_discription_year,
+.selected_posts_discription_pages {
+    display: flex;
+    align-items: left;
+    line-height: 32px;
+    font-size: 16px;
+    font-family: "Helios";
+    font-weight: 400;
+    color: #A8A8A8;
+}
+.selected_posts_discrip_stars {
+    display: flex;
+    align-items: right;
+    margin: 22px 0;
+}
+.selected_posts_discrip_rating,
+.selected_posts_discrip_publisher,
+.selected_posts_discrip_language,
+.selected_posts_discrip_year,
+.selected_posts_discrip_pages {
+    display: flex;
+    align-items: right;
+    line-height: 32px;
+    font-size: 16px;
+    font-family: "Helios";
+    font-weight: 400;
+    color: #313037;
+}
+.selected_posts_disc {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: "Helios";
+    line-height: 32px;
+    margin-bottom: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.loading {
+    color: #313037;
+    font-size: 36px;
+    font-weight: 700;
+    font-family: "Bebas Neue";
+    cursor: pointer;
+    text-decoration: none;
+    padding: 40px 0;
+    margin: auto;
+}
+.error {
+    color: #313037;
+    font-size: 36px;
+    font-weight: 700;
+    font-family: "Bebas Neue";
+    cursor: pointer;
+    text-decoration: none;
+    padding: 40px 0;
+    margin: auto;
+}
+.no_posts_available {
+    color: #313037;
+    font-size: 36px;
+    font-weight: 700;
+    font-family: "Bebas Neue";
+    cursor: pointer;
+    text-decoration: none;
+    padding: 40px 0;
+}
+.book_not_found {
+    color: #313037;
+    font-size: 36px;
+    font-weight: 700;
+    font-family: "Bebas Neue";
+    cursor: pointer;
+    text-decoration: none;
+    padding: 40px 0;
+}

@@ -4,12 +4,8 @@
 .tabs-dark {
     background-color: #313037;
 }
-.tabs-light .container {
-    padding: 0 20px 64px 20px;
-    
-}
-.tabs-dark .container {
-    padding: 0 20px 64px 20px;
+.tabs .container {
+    padding: 0 40px 0 0;
 }
 .tabs-list {
     display: flex;

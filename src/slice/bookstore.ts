@@ -1,15 +1,24 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from '../store/store';
 
 export interface IBookstore {
+    error: string;
     title: string;
     subtitle: string;
+    authors: string;
+    publisher: string;
+    language: string;
+    isbn10: string;
     isbn13: string;
+    pages: string;
+    year: string;
+    rating: string;
+    desc: string;
     price: string;
     image: string;
     url: string;
-    year: string;
-    authors: string;
+    pdf: string;
+    stars: number;
 }
 
 export interface IBookstoreState {
@@ -19,41 +28,18 @@ export interface IBookstoreState {
     currentBooks: IBookstore[] | null;
     currentPage: number;
     totalPages: number;
+    searchTerm: string;
 }
 
 const initialState: IBookstoreState = {
-    bookDetails: null,
+    bookDetails: [] as IBookstore[],
     bookLoading: false,
     bookError: null,
-    currentBooks: null,
+    currentBooks: [] as IBookstore[],
     currentPage: 1,
     totalPages: 0,
+    searchTerm: '',
 };
-
-export const fetchBookByIsbn = createAsyncThunk<IBookstore, string>(
-    'bookstore/fetchBookByIsbn',
-    async (isbn13: string, { rejectWithValue }) => {
-        try {
-            const response = await fetch(`https://api.itbook.store/1.0/books/${isbn13}`);
-            if (!response.ok) {
-                throw new Error('Failed to fetch book');
-            }
-            const data = await response.json();
-            return {
-                title: data.title,
-                subtitle: data.subtitle,
-                isbn13: data.isbn13,
-                price: data.price,
-                image: data.image,
-                url: data.url,
-                year: data.year,
-                authors: data.authors,
-            } as IBookstore;
-        } catch (error: any) {
-            return rejectWithValue(error.message);
-        }
-    }
-);
 
 export const fetchBooks = createAsyncThunk<IBookstore[], void>(
     'bookstore/fetchBooks',
@@ -71,6 +57,22 @@ export const fetchBooks = createAsyncThunk<IBookstore[], void>(
     }
 );
 
+export const fetchBookByIsbn = createAsyncThunk<IBookstore, string>(
+    'bookstore/fetchBookByIsbn',
+    async (isbn13: string, { rejectWithValue }) => {
+        try {
+            const response = await fetch(`https://api.itbook.store/1.0/books/${isbn13}`);
+            if (!response.ok) {
+                throw new Error('Failed to fetch book');
+            }
+            const data = await response.json();
+            return data as IBookstore;
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
 const booksPerPage = 9;
 
 const bookstoreSlice = createSlice({
@@ -80,7 +82,34 @@ const bookstoreSlice = createSlice({
         setCurrentPage: (state, action) => {
             state.currentPage = action.payload;
             const startIndex = (action.payload - 1) * booksPerPage;
-            state.currentBooks = state.bookDetails ? state.bookDetails.slice(startIndex, startIndex + booksPerPage) : null; // Обновление книг на текущей странице
+            const filteredBooks = state.bookDetails 
+                ? state.bookDetails.filter(book => 
+                    book.title.toLowerCase().includes(state.searchTerm.toLowerCase())
+                )
+                : [];
+
+            state.currentBooks = filteredBooks.slice(startIndex, startIndex + booksPerPage);
+        },
+        setSearchTerm: (state, action) => {
+            state.searchTerm = action.payload;
+            state.currentPage = 1;
+            const filteredBooks = state.bookDetails 
+                ? state.bookDetails.filter(book => 
+                    book.title.toLowerCase().includes(action.payload.toLowerCase())
+                )
+                : [];
+
+            state.totalPages = Math.ceil(filteredBooks.length / booksPerPage);
+            state.currentBooks = filteredBooks.slice(0, booksPerPage);
+        },
+        updateBookStars: (state, action: PayloadAction<{ isbn13: string; stars: number }>) => {
+            const { isbn13, stars } = action.payload;
+            if (state.bookDetails) {
+                const book = state.bookDetails.find(book => book.isbn13 === isbn13);
+                if (book) {
+                    book.stars = stars;
+                }
+            }
         },
     },
     extraReducers: (builder) => {
@@ -98,11 +127,22 @@ const bookstoreSlice = createSlice({
             .addCase(fetchBooks.rejected, (state, action) => {
                 state.bookLoading = false;
                 state.bookError = action.payload as string;
+            })
+            .addCase(fetchBookByIsbn.fulfilled, (state, action) => {
+                if (state.bookDetails) {
+                    const index = state.bookDetails.findIndex(book => book.isbn13 === action.payload.isbn13);
+                    if (index !== -1) {
+                        state.bookDetails[index] = { ...action.payload, stars: state.bookDetails[index].stars || 0 };
+                    } else {
+                        state.bookDetails.push({ ...action.payload, stars: 0 });
+                    }
+                } else {
+                    state.bookDetails = [{ ...action.payload, stars: 0 }];
+                }
             });
     }
 });
 
-export const { setCurrentPage } = bookstoreSlice.actions;
+export const { setCurrentPage, setSearchTerm, updateBookStars } = bookstoreSlice.actions; // добавьте updateBookStars
 export const selectBook = (state: RootState) => state.bookstore;
-
 export default bookstoreSlice.reducer;

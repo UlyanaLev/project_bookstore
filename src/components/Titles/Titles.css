@@ -4,11 +4,12 @@
 .titles-dark {
     background-color: #313037;
 }
-.titles-light .container {
-    padding: 156px 20px 40px 20px;
+.titles .container {
+    padding: 30px 0 40px 0;
+    margin: auto;
 }
 .titles-dark .container {
-    padding: 156px 20px 40px 20px;
+    padding: 30px 0 40px 0;
 }
 .title_text {
     color: #313037;

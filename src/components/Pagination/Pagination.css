@@ -11,6 +11,12 @@
     font-weight: 700;
     color: #474551;
 }
+.button_pagination_center {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100px;
+}
 .button_arrow {
     color: #474551;
     width: 14px;

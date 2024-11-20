@@ -1,21 +1,35 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './Posts.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { fetchBookByIsbn } from '../../slice/bookstore';
 import { AppDispatch } from '../../store/store';
 import { IBookstore } from '../../slice/bookstore';
+import './Posts.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { RootState } from '../../store/store';
+import {updateBookStars} from '../../slice/bookstore';
 
 interface IPosts {
     book: IBookstore;
+    isbn13: string;
+    stars?: number;
 }
 
-const Posts: React.FC<IPosts> = ({ book }) => {
+function Posts ({ book, isbn13 }: IPosts) {
     const dispatch = useDispatch<AppDispatch>();
+    const navigate = useNavigate();
+    const location = useLocation();
     const imageRef = useRef<HTMLImageElement>(null);
-    const [rating, setRating] = useState(0);
     const [hovered, setHovered] = useState(0);
+    const [stars, setStars] = useState(() => {
+        const savedStars = localStorage.getItem(`stars_${isbn13}`);
+        return savedStars ? JSON.parse(savedStars) : location.state?.stars || 0;
+    });
+
+    const fetchedBook = useSelector((state: RootState) => 
+        state.bookstore.bookDetails?.find(b => b.isbn13 === book.isbn13)
+    );
 
     useEffect(() => {
         dispatch(fetchBookByIsbn(book.isbn13));
@@ -44,29 +58,44 @@ const Posts: React.FC<IPosts> = ({ book }) => {
     };
 
     const handleClick = (index: number) => {
-        setRating(index + 1);
+        const newStars = index + 1;
+        setStars(newStars);
+        localStorage.setItem(`stars_${isbn13}`, JSON.stringify(newStars));
+        dispatch(updateBookStars({ isbn13, stars: newStars }));
+    };
+
+    const navigateToSelectedPost = () => {
+        const starCount = stars > 5 ? 5 : stars;
+        navigate(`/selected/${book.isbn13}`, { state: { stars: starCount } });
     };
 
     return (
         <div className='posts'>
             <div className='posts_top'>
                 <div className='posts_image-wrapper'>
-                    <img ref={imageRef} src={book.image} alt={book.title} className='posts_image' onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} />
+                    <img 
+                        ref={imageRef} 
+                        src={fetchedBook?.image} 
+                        alt={fetchedBook?.title}
+                        className='posts_image' 
+                        onMouseMove={handleMouseMove} 
+                        onMouseLeave={handleMouseLeave} 
+                    />
                 </div>
-                <div className='posts_text'>
-                    <div className='posts_title'>{book.title}</div>
-                    <div className='posts_description'>{book.subtitle}</div>
+                <div className='posts_text' onClick={navigateToSelectedPost}>
+                    <div className='posts_title'>{fetchedBook?.title}</div> 
+                    <div className='posts_description'>by {fetchedBook?.authors}, {fetchedBook?.publisher} {fetchedBook?.year}</div> 
                 </div>
             </div>
             <div className='posts_bottom'>
-                <div className='posts_price'>{book.price}</div>
+                <div className='posts_price'>{fetchedBook?.price}</div>
                 <button className='posts_stars'>
                     {Array(5).fill(null).map((_, index) => (
                         <FontAwesomeIcon 
-                            className='posts_stars_styles' 
-                            key={index} 
-                            icon={faStar} 
-                            style={{ color: (hovered || rating) > index ? '#313037' : '#E7E7E7' }} 
+                            className='posts_stars_styles'
+                            key={index}
+                            icon={faStar}
+                            style={{ color: stars >= index + 1 ? '#313037' : '#E7E7E7' }} 
                             onMouseEnter={() => handleMouseEnter(index)}
                             onMouseLeave={handleMouseLeave}
                             onClick={() => handleClick(index)}
