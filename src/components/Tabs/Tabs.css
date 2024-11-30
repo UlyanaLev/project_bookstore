@@ -1,5 +1,5 @@
-.tabs-list_item {
-    background-color: white;
+.tabs-list_item-light {
+    background-color: transparent;
     border: none;
     font-family: Roboto;
     color: #A8A8A8;
@@ -10,11 +10,31 @@
     cursor: pointer;
     transition: 0.45s;
 }
-.tabs-list_item:hover {
+.tabs-list_item-dark {
+    background-color: transparent;
+    border: none;
+    font-family: Roboto;
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 24px 40px;
+    margin-right: 40px;
+    cursor: pointer;
+    transition: 0.45s;
+}
+.tabs-list_item-light:hover {
     cursor: pointer;
     color: #313037;
 }
-.tabs-list_item.active {
+.tabs-list_item-dark:hover {
+    cursor: pointer;
+    color: #FC857F;
+}
+.tabs-list_item-light.active-light {
     color: #313037;
     border-bottom: 2px solid #313037;
+}
+.tabs-list_item-dark.active-dark {
+    color: white;
+    border-bottom: 2px solid white;
 }

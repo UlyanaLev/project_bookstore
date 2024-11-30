@@ -1,0 +1,108 @@
+.posts {
+    width: 352px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+.posts_top {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+.posts_image-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 265px;
+    margin-bottom: 20px;
+}
+.posts_image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+.posts_image-wrapper:hover .posts_image {
+    transform: scale(1.2); 
+    transform-origin: center;
+}
+.posts_text {
+    display: flex;
+    flex-direction: column;
+}
+.posts_title-light {
+    height: 64px;
+    font-size: 24px;
+    font-family: "Bebas Neue";
+    font-weight: 700;
+    color: #313037;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    cursor: pointer;
+}
+.posts_title-dark {
+    height: 64px;
+    font-size: 24px;
+    font-family: "Bebas Neue";
+    font-weight: 700;
+    color: #FFFFFF;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    cursor: pointer;
+}
+.posts_description {
+    font-size: 16px;
+    font-family: "Helios";
+    font-weight: 400;
+    color: #A8A8A8;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    cursor: pointer;
+}
+.posts_bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.posts_price-light {
+    font-size: 24px;
+    font-family: "Bebas Neue";
+    font-weight: 700;
+    color: #313037;
+}
+.posts_price-dark {
+    font-size: 24px;
+    font-family: "Bebas Neue";
+    font-weight: 700;
+    color: #FFFFFF;
+}
+.posts_stars {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+.posts_stars_styles-light {
+    color: #313037;
+    font-size: 14px;
+    margin-right: 10px;
+}
+.posts_stars_styles-dark {
+    color: #FFFFFF;
+    font-size: 14px;
+    margin-right: 10px;
+}
+.posts_stars_styles-light:last-child {
+    margin-right: 0;
+}
+.posts_stars_styles-dark:last-child {
+    margin-right: 0;
+}

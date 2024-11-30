@@ -1,0 +1,40 @@
+.total-sum-container {
+    display: flex;
+    flex-direction: row-reverse;
+}
+.total-sum {
+    display: flex;
+    flex-direction: column;
+    width: 328px;
+}
+.total-sum-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.total-sum-left-light {
+    font-size: 40px;
+    font-weight: 700;
+    font-family: "Bebas Neue";
+    color: #313037;
+}
+.total-sum-left-dark {
+    font-size: 40px;
+    font-weight: 700;
+    font-family: "Bebas Neue";
+    color: white;
+}
+.total-sum-right-light {
+    font-size: 40px;
+    font-weight: 700;
+    font-family: "Bebas Neue";
+    color: #313037;
+    margin-bottom: 24px;
+}
+.total-sum-right-dark {
+    font-size: 40px;
+    font-weight: 700;
+    font-family: "Bebas Neue";
+    color: white;
+    margin-bottom: 24px;
+}

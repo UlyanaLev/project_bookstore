@@ -1,29 +1,36 @@
 import './TabsContainer.css';
 import Tabs from '../Tabs/Tabs';
+import { themeContext } from '../../providers/ThemeContext';
+import { useContext } from 'react';
 
-function TabsContainer() {
-    // const [color] = useContext(themeContext);
+interface ITabsContainer {
+    activeTab: string;
+    setActiveTab: (tab: string) => void;
+}
 
+function TabsContainer({ activeTab, setActiveTab }: ITabsContainer) {
+    const [color] = useContext(themeContext);
     return (
-        <section className={`tabs`}>
-            <div className='container'>
-                <div className={`tabs-list`}>
-                    <Tabs
-                        tabsState={false} 
-                        active={true} 
-                        content='Description' 
-                    />
-                    <Tabs
-                        tabsState={false} 
-                        active={false} 
-                        content='Authors' 
-                    />
-                    <Tabs
-                        tabsState={false} 
-                        active={false} 
-                        content='Reviews' 
-                    />
-                </div>
+        <section className={`tabs-${color}`}>
+            <div className={`tabs-list-${color}`}>
+                <Tabs
+                    tabsState={false} 
+                    active={activeTab === 'description'} 
+                    content='Description' 
+                    onClick={() => setActiveTab('description')}
+                />
+                <Tabs
+                    tabsState={false} 
+                    active={activeTab === 'authors'} 
+                    content='Authors' 
+                    onClick={() => setActiveTab('authors')}
+                />
+                <Tabs
+                    tabsState={false} 
+                    active={activeTab === 'reviews'} 
+                    content='Reviews' 
+                    onClick={() => setActiveTab('reviews')}
+                />
             </div>
         </section>
     );

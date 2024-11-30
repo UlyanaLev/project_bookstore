@@ -4,6 +4,7 @@ interface IButtons {
     content?: React.ReactNode;
     typeButtons: string;
     buttonsState: boolean;
+    style?: React.CSSProperties;
     children?: React.ReactNode;
 }
 

@@ -1,29 +1,36 @@
 import React from 'react';
 import './App.css';
-import TabsContainer from './components/TabsContainer/TabsContainer';
-import Inputs from './components/Inputs/Inputs';
-import Buttons from './components/Buttons/Buttons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
-
-const buttonAddToCart = 'button__add-to-cart';
-const buttonDelete = 'button__delete';
-const buttonAddToFavorite = 'button__add-to-favorite';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
+import Footer from './components/Footer/Footer';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Header from './components/Header/Header';
+import SearchPage from './pages/SearchPage/SearchPage';
+import MainPage from './pages/MainPage/MainPage';
+import SelectedPage from './pages/SelectedPage/SelectedPage';
+import FavoritesPage from './pages/FavoritesPage/FavoritesPage';
+import CartPage from './pages/CartPage/CartPage';
+import ThemeContext from './providers/ThemeContext';
+import AccountPage from './pages/AccountPage/AccountPage';
 
 function App() {
   return (
-      <>
-          <TabsContainer />
-          <Inputs />
-          <Buttons buttonsState={false} typeButtons={buttonAddToCart}>Add to cart</Buttons>
-          <Buttons buttonsState={true} typeButtons={buttonDelete}>
-            <FontAwesomeIcon icon={faXmark} />
-          </Buttons>
-          <Buttons buttonsState={false} typeButtons={buttonAddToFavorite}>
-            <FontAwesomeIcon icon={faHeart} />
-          </Buttons>
-      </>
+    <Router>
+      <ThemeContext>
+        <Provider store={store}>
+          <Header></Header>
+            <Routes>
+              <Route path="/" element={<MainPage/>} />
+              <Route path="/search" element={<SearchPage/>} />
+              <Route path="/selected/:isbn13" element={<SelectedPage/>} />
+              <Route path="/favorites" element={<FavoritesPage/>} />
+              <Route path="/carts" element={<CartPage/>} />
+              <Route path="/account" element={<AccountPage/>} />
+            </Routes>
+          <Footer></Footer>
+        </Provider>
+        </ThemeContext>
+    </Router>
   );
 }
 

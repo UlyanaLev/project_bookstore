@@ -1,0 +1,24 @@
+.titles-light {
+    background-color: white;
+    margin-bottom: 48px;
+}
+.titles-dark {
+    background-color: #313037;
+    margin-bottom: 48px;
+}
+.title_text-light {
+    color: #313037;
+    font-size: 56px;
+    font-weight: 700;
+    font-family: "Bebas Neue";
+    text-transform: uppercase;
+    padding: 6px 0;
+}
+.title_text-dark {
+    color: #FFFFFF;
+    font-size: 56px;
+    font-weight: 700;
+    font-family: "Bebas Neue";
+    text-transform: uppercase;
+    padding: 6px 0;
+}

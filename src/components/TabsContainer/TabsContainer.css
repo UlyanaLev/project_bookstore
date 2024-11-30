@@ -4,17 +4,11 @@
 .tabs-dark {
     background-color: #313037;
 }
-.tabs-light .container {
-    padding: 0 20px 64px 20px;
-    
-}
-.tabs-dark .container {
-    padding: 0 20px 64px 20px;
-}
-.tabs-list {
+.tabs-list-light {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    background-color: transparent;
     border-bottom: 1px solid rgba(218, 218, 218, 1);
     margin-bottom: 48px;
 }
@@ -22,6 +16,7 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    background-color: transparent;
     border-bottom: 1px solid rgba(218, 218, 218, 1);
-    
+    margin-bottom: 48px;
 }

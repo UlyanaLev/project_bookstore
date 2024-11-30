@@ -1,0 +1,82 @@
+.all_posts {
+}
+.container {
+    width: 1120px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+.all_posts_wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.loading-light {
+    background-color: white;
+    color: #313037;
+    font-size: 36px;
+    font-weight: 700;
+    font-family: "Bebas Neue";
+    cursor: pointer;
+    text-decoration: none;
+    padding: 40px 0;
+    margin: auto;
+}
+.loading-dark {
+    background-color: #313037;
+    color: white;
+    font-size: 36px;
+    font-weight: 700;
+    font-family: "Bebas Neue";
+    cursor: pointer;
+    text-decoration: none;
+    padding: 40px 0;
+    margin: auto;
+}
+.error-light {
+    background-color: white;
+    color: #313037;
+    font-size: 36px;
+    font-weight: 700;
+    font-family: "Bebas Neue";
+    cursor: pointer;
+    text-decoration: none;
+    padding: 40px 0;
+    margin: auto;
+}
+.error-dark {
+    background-color: #313037;
+    color: white;
+    font-size: 36px;
+    font-weight: 700;
+    font-family: "Bebas Neue";
+    cursor: pointer;
+    text-decoration: none;
+    padding: 40px 0;
+    margin: auto;
+}
+.no_posts_available-light {
+    background-color: white;
+    color: #313037;
+    font-size: 36px;
+    font-weight: 700;
+    font-family: "Bebas Neue";
+    cursor: pointer;
+    text-decoration: none;
+    padding: 40px 0;
+}
+.no_posts_available-dark {
+    color: white;
+    background-color: #313037;
+    font-size: 36px;
+    font-weight: 700;
+    font-family: "Bebas Neue";
+    cursor: pointer;
+    text-decoration: none;
+    padding: 40px 0;
+}
+@media (max-width: 1100px) {
+    .all_posts_wrap {
+        justify-content: space-around;
+    }
+}

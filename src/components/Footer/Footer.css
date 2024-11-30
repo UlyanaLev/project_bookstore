@@ -1,0 +1,25 @@
+.footer-light {
+    background-color: white;
+}
+.footer-dark {
+    background-color: #313037;
+}
+.footer-wrap {
+    height: 95px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #E7E7E7;
+}
+.footer_left_text {
+    font-family: "Helios";
+    font-weight: 400;
+    font-size: 16px;
+    color: #A8A8A8;
+}
+.footer_right_text{
+    font-family: "Helios";
+    font-weight: 400;
+    font-size: 16px;
+    color: #A8A8A8;
+}
