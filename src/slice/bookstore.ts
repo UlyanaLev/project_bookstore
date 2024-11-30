@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction, createSelector } from "@reduxjs/toolkit";
 import { RootState } from '../store/store';
 
 export interface IBookstore {
@@ -20,7 +20,13 @@ export interface IBookstore {
     pdf: string;
     stars: number;
 }
-
+export interface ICartItem {
+    book: IBookstore;
+    quantity: number;
+}
+export interface IFavoriteBooks {
+    book: IBookstore;
+}
 export interface IBookstoreState {
     bookDetails: IBookstore[] | null;
     bookLoading: boolean;
@@ -29,8 +35,9 @@ export interface IBookstoreState {
     currentPage: number;
     totalPages: number;
     searchTerm: string;
+    cartItems: ICartItem[];
+    favoriteBooks: IFavoriteBooks[];
 }
-
 const initialState: IBookstoreState = {
     bookDetails: [] as IBookstore[],
     bookLoading: false,
@@ -39,8 +46,9 @@ const initialState: IBookstoreState = {
     currentPage: 1,
     totalPages: 0,
     searchTerm: '',
+    cartItems: JSON.parse(localStorage.getItem('cartItems') || '[]') as ICartItem[],
+    favoriteBooks: JSON.parse(localStorage.getItem('favoriteBooks') || '[]') as IFavoriteBooks[],
 };
-
 export const fetchBooks = createAsyncThunk<IBookstore[], void>(
     'bookstore/fetchBooks',
     async (_, { rejectWithValue }) => {
@@ -56,7 +64,6 @@ export const fetchBooks = createAsyncThunk<IBookstore[], void>(
         }
     }
 );
-
 export const fetchBookByIsbn = createAsyncThunk<IBookstore, string>(
     'bookstore/fetchBookByIsbn',
     async (isbn13: string, { rejectWithValue }) => {
@@ -73,7 +80,24 @@ export const fetchBookByIsbn = createAsyncThunk<IBookstore, string>(
     }
 );
 
-const booksPerPage = 9;
+export const selectTotalSum = (state: RootState) => {
+    return state.bookstore.cartItems.reduce((total, item) => {
+        const priceInNumber = parseFloat(item.book.price.replace('$', '')) || 0;
+        return total + (priceInNumber * item.quantity);
+    }, 0).toFixed(2); 
+};
+
+let booksPerPage = 9;
+
+const updateBooksPerPage = () => {
+    if (window.innerWidth <= 1100) {
+        booksPerPage = 8;
+    } else {
+        booksPerPage = 9;
+    }
+};
+
+updateBooksPerPage();
 
 const bookstoreSlice = createSlice({
     name: "bookstore",
@@ -87,7 +111,6 @@ const bookstoreSlice = createSlice({
                     book.title.toLowerCase().includes(state.searchTerm.toLowerCase())
                 )
                 : [];
-
             state.currentBooks = filteredBooks.slice(startIndex, startIndex + booksPerPage);
         },
         setSearchTerm: (state, action) => {
@@ -98,18 +121,41 @@ const bookstoreSlice = createSlice({
                     book.title.toLowerCase().includes(action.payload.toLowerCase())
                 )
                 : [];
-
             state.totalPages = Math.ceil(filteredBooks.length / booksPerPage);
             state.currentBooks = filteredBooks.slice(0, booksPerPage);
         },
         updateBookStars: (state, action: PayloadAction<{ isbn13: string; stars: number }>) => {
             const { isbn13, stars } = action.payload;
-            if (state.bookDetails) {
-                const book = state.bookDetails.find(book => book.isbn13 === isbn13);
-                if (book) {
-                    book.stars = stars;
-                }
+            const book = state.bookDetails?.find(book => book.isbn13 === isbn13);
+            if (book) {
+                book.stars = stars;
             }
+        },
+        addToCart: (state, action: PayloadAction<ICartItem>) => {
+            const existingItem = state.cartItems.find(item => item.book.isbn13 === action.payload.book.isbn13);
+            if (existingItem) {
+                existingItem.quantity += action.payload.quantity;
+            } else {
+                state.cartItems.push(action.payload);
+            }
+            localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
+        },
+        removeFromCart: (state, action: PayloadAction<ICartItem>) => {
+            state.cartItems = state.cartItems.filter(item => item.book.isbn13 !== action.payload.book.isbn13);
+        },
+        addToFavorites: (state, action: PayloadAction<IFavoriteBooks>) => {
+            const existingFavorite = state.favoriteBooks.find(favorite => favorite.book.isbn13 === action.payload.book.isbn13);
+            
+            if (!existingFavorite) {
+                state.favoriteBooks.push(action.payload);
+            }
+        },
+        removeFromFavorites: (state, action: PayloadAction<string>) => {
+            state.favoriteBooks = state.favoriteBooks.filter(fav => fav.book.isbn13 !== action.payload);
+        },
+        setCartItems: (state, action) => {
+            state.cartItems = action.payload;
+            localStorage.setItem('cartItems', JSON.stringify(action.payload));
         },
     },
     extraReducers: (builder) => {
@@ -143,6 +189,8 @@ const bookstoreSlice = createSlice({
     }
 });
 
-export const { setCurrentPage, setSearchTerm, updateBookStars } = bookstoreSlice.actions; // добавьте updateBookStars
+export const { setCurrentPage, setSearchTerm, updateBookStars, addToCart, removeFromCart, addToFavorites, removeFromFavorites, setCartItems } = bookstoreSlice.actions;
 export const selectBook = (state: RootState) => state.bookstore;
+export const selectFavoriteBooks = (state: RootState) => state.bookstore.favoriteBooks;
+
 export default bookstoreSlice.reducer;

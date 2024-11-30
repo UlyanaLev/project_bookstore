@@ -1,0 +1,11 @@
+.main-page_container-light {
+    width: 100%;
+    background-color: white;
+}
+.main-page_container-dark {
+    width: 100%;
+    background-color: #313037;
+}
+.paddings {
+    padding-bottom: 176px;
+}

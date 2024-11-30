@@ -1,16 +1,58 @@
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.header-light {
+    background-color: #ffffff;
 }
-.header_all {
+.header-dark {
+    background-color: #313037;
+}
+.container-light {
+    max-width: 1260px;
+    padding: 0 20px;
+    margin: auto;
+    position: relative;
+    background-color: white;
+}
+.container-dark {
+    max-width: 1260px;
+    padding: 0 20px;
+    margin: auto;
+    position: relative;
+    background-color: #313037;
+}
+.header_all-light {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
+    z-index: 9999;
+    background-color: white;
+    width: 97%;
+    max-width: 1220px;
     height: 104px;
     border-bottom: 1px solid #E7E7E7;
+    left: 50%;
+    transform: translateX(-50%);
 }
-.logo {
+.header_all-dark {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    z-index: 9999;
+    background-color: #313037;
+    width: 97%;
+    max-width: 1220px;
+    height: 104px;
+    border-bottom: 1px solid #E7E7E7;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.header_left {
+    display: flex;
+    align-items: center;
+}
+.logo-light {
     color: #313037;
     font-size: 42px;
     font-weight: 700;
@@ -18,15 +60,49 @@
     text-transform: uppercase;
     cursor: pointer;
     text-decoration: none;
+    margin-right: 20px;
+    transition: 0.45s;
+}
+.logo-dark {
+    color: white;
+    font-size: 42px;
+    font-weight: 700;
+    font-family: "Bebas Neue";
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    margin-right: 20px;
+    transition: 0.45s;
 }
 .header_rigth {
     width: 184px;
     display: flex;
     justify-content: space-between;
 }
-.header_icon {
+.header_icon-light {
     width: 56px;
     font-size: 24px;
     color: #313037;
     cursor: pointer;
+}
+.header_icon-dark {
+    width: 56px;
+    font-size: 24px;
+    color: #ffffff;
+    cursor: pointer;
+}
+.faMoon {
+    width: 56px;
+    font-size: 24px;
+    color: #313037;
+    cursor: pointer;
+}
+.faSun {
+    width: 56px;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+@media (max-width: 1010px) {
+    
 }

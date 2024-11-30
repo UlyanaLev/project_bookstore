@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { fetchBookByIsbn } from '../../slice/bookstore';
@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { RootState } from '../../store/store';
 import {updateBookStars} from '../../slice/bookstore';
+import { themeContext } from '../../providers/ThemeContext';
 
 interface IPosts {
     book: IBookstore;
@@ -22,6 +23,7 @@ function Posts ({ book, isbn13 }: IPosts) {
     const location = useLocation();
     const imageRef = useRef<HTMLImageElement>(null);
     const [hovered, setHovered] = useState(0);
+    const [color] = useContext(themeContext);
     const [stars, setStars] = useState(() => {
         const savedStars = localStorage.getItem(`stars_${isbn13}`);
         return savedStars ? JSON.parse(savedStars) : location.state?.stars || 0;
@@ -83,19 +85,19 @@ function Posts ({ book, isbn13 }: IPosts) {
                     />
                 </div>
                 <div className='posts_text' onClick={navigateToSelectedPost}>
-                    <div className='posts_title'>{fetchedBook?.title}</div> 
+                    <div className={`posts_title-${color}`}>{fetchedBook?.title}</div> 
                     <div className='posts_description'>by {fetchedBook?.authors}, {fetchedBook?.publisher} {fetchedBook?.year}</div> 
                 </div>
             </div>
             <div className='posts_bottom'>
-                <div className='posts_price'>{fetchedBook?.price}</div>
+                <div className={`posts_price-${color}`}>{fetchedBook?.price}</div>
                 <button className='posts_stars'>
                     {Array(5).fill(null).map((_, index) => (
                         <FontAwesomeIcon 
-                            className='posts_stars_styles'
+                            className={`posts_stars_styles-${color}`}
                             key={index}
                             icon={faStar}
-                            style={{ color: stars >= index + 1 ? '#313037' : '#E7E7E7' }} 
+                            style={{ color: stars >= index + 1 ? '#FC857F' : '#E7E7E7' }} 
                             onMouseEnter={() => handleMouseEnter(index)}
                             onMouseLeave={handleMouseLeave}
                             onClick={() => handleClick(index)}

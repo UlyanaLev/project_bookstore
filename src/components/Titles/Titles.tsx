@@ -1,6 +1,6 @@
 import './Titles.css';
 import {useContext} from "react";
-// import {themeContext} from "../../providers/ThemeContext";
+import {themeContext} from "../../providers/ThemeContext";
 
 interface ITitles {
     content?: React.ReactNode;
@@ -8,14 +8,12 @@ interface ITitles {
 }
 
 function Titles ({content, children}: ITitles) {
-    // const [color] = useContext(themeContext);
+    const [color] = useContext(themeContext);
         return (  
             <>
-                <section className='titles'>
-                    <div className='container'>
-                        <div className='title'>
-                            <h2 className='title_text'>{children || content}</h2>
-                        </div>
+                <section className={`titles-${color}`}>
+                    <div className='title'>
+                        <h2 className={`title_text-${color}`}>{children || content}</h2>
                     </div>
                 </section>
             </>

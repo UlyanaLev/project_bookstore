@@ -1,0 +1,26 @@
+.burger {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px; /* ширина бургера */
+    height: 20px; /* высота бургера */
+}
+
+.line {
+    height: 3px; /* высота линии */
+    background-color: #333; /* цвет линии */
+    transition: all 0.3s ease; /* анимация */
+}
+
+.burger.open .line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.burger.open .line:nth-child(2) {
+    opacity: 0; /* скрыть среднюю линию */
+}
+
+.burger.open .line:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}

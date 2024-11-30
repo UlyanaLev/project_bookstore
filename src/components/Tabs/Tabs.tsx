@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from 'react';
+import { themeContext } from '../../providers/ThemeContext';
 import './Tabs.css';
 
 interface ITabs {  
@@ -9,10 +10,12 @@ interface ITabs {
 }
 
 function Tabs({ content, active, tabsState, onClick }: ITabs) {  
+    const [color] = useContext(themeContext);
+    
     return (
         <button 
             disabled={tabsState} 
-            className={"tabs-list_item" + (active ? ' active' : '')} // Добавьте класс, если активный таб
+            className={`tabs-list_item-${color} ${active ? `active-${color}` : ''}`}
             onClick={onClick}
         >
             {content}

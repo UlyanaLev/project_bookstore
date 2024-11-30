@@ -1,0 +1,47 @@
+.buttons-quantity {
+    width: 168px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.buttons-quantity_item-light {
+    border: none;
+    background-color: transparent;
+    width: 56px;
+    height: 56px;
+    font-size: 16px;
+    color: #313037;
+}
+.quantity-light {
+    font-size: 24px;
+    color: #313037;
+}
+.buttons-quantity_item-dark {
+    border: none;
+    background-color: transparent;
+    width: 56px;
+    height: 56px;
+    font-size: 16px;
+    color: white;
+}
+.quantity-dark {
+    font-size: 24px;
+    color: white;
+}
+@media (max-width: 685px) {
+    .buttons-quantity_item-light {
+        font-size: 24px;
+    }
+    .buttons-quantity_item-dark {
+        font-size: 24px;
+    }
+    .quantity-light {
+        font-size: 32px;
+        color: #313037;
+    }
+    .quantity-dark {
+        font-size: 32px;
+        color: white;
+    }
+    
+}

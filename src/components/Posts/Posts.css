@@ -33,12 +33,24 @@
     display: flex;
     flex-direction: column;
 }
-.posts_title {
+.posts_title-light {
     height: 64px;
     font-size: 24px;
     font-family: "Bebas Neue";
     font-weight: 700;
     color: #313037;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    cursor: pointer;
+}
+.posts_title-dark {
+    height: 64px;
+    font-size: 24px;
+    font-family: "Bebas Neue";
+    font-weight: 700;
+    color: #FFFFFF;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -61,21 +73,36 @@
     justify-content: space-between;
     align-items: center;
 }
-.posts_price {
+.posts_price-light {
     font-size: 24px;
     font-family: "Bebas Neue";
     font-weight: 700;
     color: #313037;
+}
+.posts_price-dark {
+    font-size: 24px;
+    font-family: "Bebas Neue";
+    font-weight: 700;
+    color: #FFFFFF;
 }
 .posts_stars {
     border: none;
     background-color: transparent;
     cursor: pointer;
 }
-.posts_stars_styles {
+.posts_stars_styles-light {
+    color: #313037;
     font-size: 14px;
     margin-right: 10px;
 }
-.posts_stars_styles:last-child {
+.posts_stars_styles-dark {
+    color: #FFFFFF;
+    font-size: 14px;
+    margin-right: 10px;
+}
+.posts_stars_styles-light:last-child {
+    margin-right: 0;
+}
+.posts_stars_styles-dark:last-child {
     margin-right: 0;
 }

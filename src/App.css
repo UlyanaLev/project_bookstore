@@ -1,1 +1,32 @@
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+.container {
+    max-width: 1260px;
+    padding: 0 20px;
+    margin: auto;
+    position: relative;
+}
+.container-light {
+    max-width: 1260px;
+    padding: 0 20px;
+    margin: auto;
+    position: relative;
+    background-color: white;
+}
+.container-dark {
+    max-width: 1260px;
+    padding: 0 20px;
+    margin: auto;
+    position: relative;
+    background-color: #313037;
+}
+@media all and (max-width: 1200px) {}
+@media (max-width: 992px) {}
+@media (max-width: 767px) {}
+@media (max-width: 566px) {}
+@media (max-width: 320px) {}
