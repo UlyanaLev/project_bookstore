@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, PayloadAction, createSelector } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from '../store/store';
 
 export interface IBookstore {
@@ -142,21 +142,23 @@ const bookstoreSlice = createSlice({
         },
         removeFromCart: (state, action: PayloadAction<ICartItem>) => {
             state.cartItems = state.cartItems.filter(item => item.book.isbn13 !== action.payload.book.isbn13);
+            localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
         },
         addToFavorites: (state, action: PayloadAction<IFavoriteBooks>) => {
             const existingFavorite = state.favoriteBooks.find(favorite => favorite.book.isbn13 === action.payload.book.isbn13);
-            
             if (!existingFavorite) {
                 state.favoriteBooks.push(action.payload);
             }
+            localStorage.setItem('favoriteBooks', JSON.stringify(state.favoriteBooks));
         },
         removeFromFavorites: (state, action: PayloadAction<string>) => {
             state.favoriteBooks = state.favoriteBooks.filter(fav => fav.book.isbn13 !== action.payload);
+            localStorage.setItem('favoriteBooks', JSON.stringify(state.favoriteBooks));
         },
         setCartItems: (state, action) => {
             state.cartItems = action.payload;
             localStorage.setItem('cartItems', JSON.stringify(action.payload));
-        },
+        }
     },
     extraReducers: (builder) => {
         builder

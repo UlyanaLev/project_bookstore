@@ -32,7 +32,7 @@ function SearchPage() {
 
     return (
         <div className={`search-page_container-${color}`}>
-            <div className='container'>
+            <div className={`container-${color}`}>
                 <div className='paddings'></div>
                 <Titles content={`"${searchTerm}" Search results`} />
                 <div className={`number_of_books_found-${color}`}>Found {booksFoundCount} {bookLabel}</div>
