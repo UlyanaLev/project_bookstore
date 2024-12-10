@@ -1,46 +1,49 @@
-# Getting Started with Create React App
+# project_bookstore
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Bookstore — это многостраничное приложение для книжного интернет-магазина, разработанное с использованием технологий React и Redux. Данный проект позволяет пользователям:
 
-## Available Scripts
+- Искать книги с помощью продвинутой функции поиска, результаты которого отображаются на отдельной странице.
+- Добавлять книги в корзину или в список "Любимые", доступ к которым также реализован через отдельные страницы.
+- Удалять книги из корзины и списка "Любимые".
+- Переключаться между страницами с использованием пагинации.
+- Обращаться к детальной странице книги, используя маршруты с параметрами (например, /book/:id).
+- Кроме того, приложение поддерживает как светлую, так и темную темы, позволяя пользователям выбирать предпочтительный интерфейс.
 
-In the project directory, you can run:
+Данные загружаются через API, а управление состоянием приложения осуществляется с помощью Redux. Использование react-router-dom обеспечивает удобную навигацию пользователям.
 
-### `npm start`
+## Установка
+Для того чтобы запустить проект на Вашем локальном компьютере, выполните следующие шаги:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Клонирование репозитория:
+  
+   ```bash
+   git clone https://github.com/UlyanaLev/project_bookstore.git
+   ```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+2. Установка зависимостей с использованием npm:
 
-### `npm test`
+   cd project_bookstore
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ```bash
+   npm install
+   ```
 
-### `npm run build`
+3. Запуск проекта:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```bash
+   npm run start
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   Теперь Вы сможете открыть приложение в веб-браузере по адресу 
+   http://localhost:3000
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Использованные технологии
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+React: для создания пользовательских интерфейсов.
+Redux: для управления состоянием приложения.
+react-router-dom: для навигации по страницам.
+CSS/SASS: для стилизации компонентов и настройки тем.
+   
+Примечание:
+Убедитесь, что у Вас установлен Node.js и npm перед выполнением вышеуказанных команд.
