@@ -6,6 +6,8 @@ import { RootState, AppDispatch } from '../../store/store';
 import { useParams } from 'react-router-dom';
 import SelectedPosts from '../../components/SelectedPosts/SelectedPosts';
 import { themeContext } from '../../providers/ThemeContext';
+import Subscription from '../../components/Subscription/Subscription';
+import SimilarPosts from '../../components/SimilarPosts/SimilarPosts';
 
 function SelectedPage() {
     const dispatch = useDispatch<AppDispatch>();
@@ -14,10 +16,10 @@ function SelectedPage() {
     const [color] = useContext(themeContext);
 
     useEffect(() => {
-        dispatch(fetchBooks());
         if (isbn13) {
             dispatch(fetchBookByIsbn(isbn13));
         }
+        dispatch(fetchBooks());
     }, [dispatch, isbn13]);
 
     if (bookLoading) {
@@ -56,7 +58,9 @@ function SelectedPage() {
     return (
         <div className={`selected-page_container-${color}`}>
             <div className={`container-${color}`}>
-                <SelectedPosts book={book} stars={0} isbn13={book.isbn13}/>
+                <SelectedPosts book={book} stars={book.stars || 0} isbn13={book.isbn13} />
+                <Subscription />
+                <SimilarPosts selectedBookTitle={book.title} />
             </div>
         </div>
     );

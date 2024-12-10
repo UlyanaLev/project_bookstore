@@ -58,6 +58,9 @@ export const fetchBooks = createAsyncThunk<IBookstore[], void>(
                 throw new Error('Failed to fetch books');
             }
             const data = await response.json();
+            if (!data.books || data.books.length === 0) {
+                throw new Error('No books found');
+            }
             return data.books;
         } catch (error: any) {
             return rejectWithValue(error.message);
@@ -87,17 +90,7 @@ export const selectTotalSum = (state: RootState) => {
     }, 0).toFixed(2); 
 };
 
-let booksPerPage = 9;
-
-const updateBooksPerPage = () => {
-    if (window.innerWidth <= 1100) {
-        booksPerPage = 8;
-    } else {
-        booksPerPage = 9;
-    }
-};
-
-updateBooksPerPage();
+let booksPerPage = 12;
 
 const bookstoreSlice = createSlice({
     name: "bookstore",

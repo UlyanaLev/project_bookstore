@@ -23,6 +23,7 @@
     display: block;
     width: 544px;
     height: 472px;
+    margin-bottom: 32px;
 }
 .selected_posts_photo {
     position: relative;
@@ -110,6 +111,7 @@
 }
 .selected_posts_bottom {
     width: 100%;
+    border-bottom: 1px solid #E7E7E7;
 }
 .selected_posts_discrip_rating-dark,
 .selected_posts_discrip_publisher-dark,

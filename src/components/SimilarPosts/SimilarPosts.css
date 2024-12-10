@@ -1,0 +1,57 @@
+.similar-light {
+    background-color: white;
+}
+.similar-dark {
+    background-color: #313037;
+}
+.similar-wrap {
+    display: flex;
+    flex-direction: column;
+}
+.similar_top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.similar_title-light {
+    margin-top: 72px;
+    margin-bottom: 48px;
+    color: #313037;
+    font-weight: 700;
+    font-size: 40px;
+    font-family: "Bebas Neue";
+}
+.similar_title-dark {
+    margin-top: 72px;
+    margin-bottom: 48px;
+    color: white;
+    font-weight: 700;
+    font-size: 40px;
+    font-family: "Bebas Neue";
+}
+.similar_top_arrow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 64px;
+}
+.similar_arrow-light {
+    color: #313037;
+    font-size: 24px;
+    margin-top: 72px;
+    margin-bottom: 48px;
+    cursor: pointer;
+}
+.similar_arrow-dark {
+    color: white;
+    font-size: 24px;
+    margin-top: 72px;
+    margin-bottom: 48px;
+    cursor: pointer;
+}
+.similar_bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

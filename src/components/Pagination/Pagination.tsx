@@ -5,6 +5,7 @@ import { setCurrentPage, selectBook } from '../../slice/bookstore';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeftLong, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { themeContext } from '../../providers/ThemeContext';
+
 const Pagination = () => {
     const dispatch = useDispatch();
     const { currentPage, totalPages } = useSelector(selectBook);
@@ -19,7 +20,11 @@ const Pagination = () => {
     return (
         <section className={`pagination-${color}`}>
             <div className='button_pagination'>
-                <button className='button_prev' onClick={() => handlePageChange(currentPage - 1)}>
+                <button 
+                    className='button_prev' 
+                    onClick={() => handlePageChange(currentPage - 1)} 
+                    disabled={currentPage === 1}
+                >
                     <FontAwesomeIcon className={`button_arrow-${color}`} icon={faArrowLeftLong} />
                     <p className={`button_text-${color}`}>Prev</p>
                 </button>
@@ -39,7 +44,11 @@ const Pagination = () => {
                         );
                     })}
                 </div>
-                <button className='button_next' onClick={() => handlePageChange(currentPage + 1)}>
+                <button 
+                    className='button_next' 
+                    onClick={() => handlePageChange(currentPage + 1)} 
+                    disabled={currentPage === totalPages}
+                >
                     <p className={`button_text-${color}`}>Next</p>
                     <FontAwesomeIcon className={`button_arrow-${color}`} icon={faArrowRight} />
                 </button>
