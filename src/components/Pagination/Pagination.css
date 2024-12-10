@@ -10,6 +10,7 @@
     align-items: center;
     height: 147px;
     border-top: 1px solid #E7E7E7;
+    border-bottom: 1px solid #E7E7E7;
 }
 .button_text-light {
     font-size: 16px;

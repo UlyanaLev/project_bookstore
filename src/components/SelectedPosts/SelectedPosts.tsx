@@ -5,8 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import './SelectedPosts.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeftLong, faStar } from '@fortawesome/free-solid-svg-icons';
 import Titles from '../Titles/Titles';
 import Buttons from '../Buttons/Buttons';
 import { IBookstore } from '../../slice/bookstore';
@@ -77,9 +76,6 @@ function SelectedPosts ({ book, isbn13 }: ISelectedPosts) {
         }
         setHovered(0);
         setHoveredStars(0);
-    };
-    const handleMouseEnter = (index: number) => {
-        setHovered(index + 1);
     };
 
     const handleClick = (index: number) => {
